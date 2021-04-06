@@ -1,3 +1,4 @@
+/* General */
 body
 {
     background-color: #def9f5;
@@ -20,3 +21,20 @@ h1,h3
 {
     color: #66BFBF;
 }
+
+img
+{
+    width:300px;
+    height:300px;
+    border-radius: 200px;
+}
+
+
+table
+{
+    border-spacing: 20px;
+}
+
+/* Class */
+
+/* IDs */

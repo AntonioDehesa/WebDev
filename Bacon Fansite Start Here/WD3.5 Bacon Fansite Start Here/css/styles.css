@@ -1,0 +1,36 @@
+/* General */
+
+
+h1
+{
+    color: red;
+    font-size: 200px;
+}
+
+img
+{
+    background-color: red;
+    height: 150px;
+    width: 150px;
+}
+
+
+img:hover
+{
+    background-color: gold;
+}
+
+/* Classes */
+
+.bacon
+{
+    background-color: pink;
+}
+
+.broccoli
+{
+    background-color: green;
+}
+
+
+/* IDs */
