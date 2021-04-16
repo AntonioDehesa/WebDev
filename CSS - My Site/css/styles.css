@@ -1,0 +1,19 @@
+body
+{
+    background-color: white;
+    margin: 0em;
+}
+
+div
+{
+    background-color: #def9f5;
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+h1
+{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-top: 0em;
+}
