@@ -1,7 +1,10 @@
+/*General*/
 body
 {
     background-color: white;
     margin: 0em;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 div
@@ -13,7 +16,74 @@ div
 
 h1
 {
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    margin-top: 0em;
+    width: 10%;
+    margin: 0 auto 0 auto;
+}
+
+/*Classes*/
+/*
+The box model of website challenge
+.top-div
+{
+    border: solid 10px;
+    padding: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.mid-div
+{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    border: solid 20px;
+    margin-left: 260px;
+}
+
+.bot-div
+{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    border: solid 10px;
+    margin-left: 500px;
+}
+*/
+
+.top-div
+{
+    background-color: #E4F9F5;
+    padding-top: 100px;
+    position: relative;
+}
+
+.mid-div
+{
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+
+.bot-div
+{
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+}
+
+
+/*ID*/
+
+#bot-cloud
+{
+    position: absolute;
+    left: 300px;
+    bottom: 300px;
+}
+
+#top-cloud
+{
+    position: absolute;
+    right: 300px;
+    top: 50px;
 }
