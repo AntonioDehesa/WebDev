@@ -5,29 +5,74 @@ body
     margin: 0em;
     text-align: center;
     font-family: 'Merriweather', serif;
+    color: #40514E;
+}
+
+
+hr
+{
+    background-color: none;
+    height: 2px;
+    width: 10%;
+    border-top: dotted;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-color: #EAF6F6;
+    border-width: 10px;
+    margin: 100px auto;
+}
+
+
+p
+{
+    line-height: 2;
 }
 
 div
 {
     margin-top: 0em;
     margin-bottom: 0em;
+    line-height: 2;
 }
 
 h1
 {
-    width: 10%;
-    margin: 0 auto 0 auto;
+    width: 25%;
+    margin: 50px auto 0px auto;
     font-family: 'Sacramento', cursive;
+    /*font-size: 562.5%;/*100% is equivalent to 16px. so to get 90px we would need to: 90px/16*100=562.5 so the right font size should be 562.5%*/
+    /*But there is an easier way: using em. 16px = 100% = 1em. so it should be 5.625em
+    Be careful, the dynamic size is inherited. so if you modify the size in the body, and in the h1, the size mod in h1 will be
+    on top of the one in the body. this does not happen for static sizes.
+    We could use rem instead. it stands for Root em, which will ignore the inheritance*/
+    font-size: 5.625rem;
+    color: #66BFBF;
 }
 
 h2
 {
     font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #66BFBF;
 }
 
 h3
 {
     font-family: 'Montserrat', sans-serif;
+    color: #11999E;
+}
+
+a
+{
+    color: #11999E;
+    margin: 10px 20px;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #EAF6F6;
 }
 
 /*Classes*/
@@ -65,24 +110,66 @@ The box model of website challenge
     background-color: #E4F9F5;
     padding-top: 100px;
     position: relative;
+    margin: 0 0 100px;
 }
 
 .mid-div
 {
-
+    margin-bottom: 60px;
 }
 
 .bot-div
 {
-
+    background-color: #66BFBF;
+    color: #EAF6F6;
+    padding: 20px 0 20px;
 }
 
 .round-img
 {
-    width:300px;
-    height:300px;
+    width:25%;
     border-radius: 200px;
 }
+
+.skill-img
+{
+    float: left;
+    margin-right: 50px;
+}
+.skill-row
+{
+    /*width: 0.5rem;*/
+    width: 50%;
+    margin: 100px auto;
+    text-align: left;
+}
+
+.btn {
+    background: #11cdd4;
+    background-image: -webkit-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -moz-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -ms-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -o-linear-gradient(top, #11cdd4, #11999e);
+    background-image: linear-gradient(to bottom, #11cdd4, #11999e);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background: #30e3cb;
+    background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -ms-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
+    text-decoration: none;
+  }
 
 /*ID*/
 
@@ -98,4 +185,15 @@ The box model of website challenge
     position: absolute;
     right: 300px;
     top: 50px;
+}
+
+#my-description
+{
+    font-weight: normal;
+}
+
+#bio
+{
+    width: 30%;
+    margin: auto;
 }
