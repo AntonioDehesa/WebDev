@@ -12,11 +12,19 @@ h1
     line-height: 1.5;
     font-weight: bold;
 }
+
+h2
+{
+    font-family: "Montserrat-Bold";
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1.5;
+}
 /*Class*/
 
 .container-fluid
 {
-    padding: 3% 15%;
+    padding: 3% 15% 7%;
 }
 
 /* Navigation bar */
@@ -83,8 +91,22 @@ h1
 {
     width: 60%;
     transform: rotate(25deg);
+    position: absolute;
+    right: 30%;
 }
 
+/* Testimonials */
+.testimonial-img
+{
+    width: 10%;
+    border-radius: 100%;
+    margin: 20px;
+}
+
+.carousel-item
+{
+    padding: 7% 15%;
+}
 
 /*Id*/
 #title
@@ -97,4 +119,41 @@ h1
 #features
 {
     padding: 7% 15%;
+    background-color: #fff;
+    position: relative;
+}
+
+
+/* Testimonials */
+#testimonials
+{
+    text-align: center;
+    background-color: #ef8172;
+    color: #fff;
+}
+
+/* Press */
+#press
+{
+    background-color: #ef8172;
+    text-align: center;
+    padding-bottom: 3%;
+}
+.press-logo
+{
+    width: 15%;
+    margin: 20px 20px 15px;
+}
+
+/* Pricing section */
+
+#pricing
+{
+    padding: 100px;
+    text-align: center;
+}
+
+.pricing-col
+{
+    padding: 3% 2%;
 }
