@@ -19,7 +19,7 @@
 
 <body>
 
-  <section id="title">
+  <section class="colored-section" id="title">
   <div class="container-fluid">
 
     <!-- Nav Bar -->
@@ -31,13 +31,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <a class="nav-link" href="">Contact</a>
+              <a class="nav-link" href="#footer">Contact</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="">Pricing</a>
+              <a class="nav-link" href="#pricing">Pricing</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="">Download</a>
+              <a class="nav-link" href="#cta">Download</a>
           </li>
       </ul>
    </div>
@@ -49,7 +49,7 @@
 
     <div class="row">
       <div class="col-lg-6">
-        <h1>Meet new and interesting dogs nearby.</h1>
+        <h1 class="big-heading">Meet new and interesting dogs nearby.</h1>
         <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button>
         <button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i>Download</button>
       </div>
@@ -64,43 +64,45 @@
 
   <!-- Features -->
 
-  <section id="features">
-
-   <div class="row">
-     <div class="col-lg-4 features-box">
-      <i class="features-icons fas fa-check-circle fa-4x"></i>
-      <h3 class="features-headings">Easy to use.</h3>
-      <p class="features-text">So easy to use, even your dog could do it.</p>
-     </div> 
-     <div class="col-lg-4 features-box">
-      <i class="features-icons fas fa-bullseye fa-4x"></i>
-     <h3 class="features-headings">Elite Clientele</h3>
-      <p class="features-text">We have all the dogs, the greatest dogs.</p>
-     </div>
-     <div class="col-lg-4 features-box">
-      <i class="features-icons fas fa-heart fa-4x"></i>
-      <h3 class="features-headings">Guaranteed to work.</h3>
-      <p class="features-text">Find the love of your dog's life or your money back.</p>
-     </div>
-   </div>
+  <section class="white-section" id="features">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-4 features-box">
+            <i class="features-icons fas fa-check-circle fa-4x"></i>
+            <h3 class="features-headings">Easy to use.</h3>
+            <p class="features-text">So easy to use, even your dog could do it.</p>
+          </div> 
+          <div class="col-lg-4 features-box">
+            <i class="features-icons fas fa-bullseye fa-4x"></i>
+          <h3 class="features-headings">Elite Clientele</h3>
+            <p class="features-text">We have all the dogs, the greatest dogs.</p>
+          </div>
+          <div class="col-lg-4 features-box">
+            <i class="features-icons fas fa-heart fa-4x"></i>
+            <h3 class="features-headings">Guaranteed to work.</h3>
+            <p class="features-text">Find the love of your dog's life or your money back.</p>
+          </div>
+        </div>
+    </div>
+   
 
   </section>
 
 
   <!-- Testimonials -->
 
-  <section id="testimonials">
+  <section class="colored-section" id="testimonials">
 
     <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div class="carousel-item active container-fluid">
           <div alt="First Testimony">
             <h2 class="testimonial-text">I no longer have to sniff other dogs for love. I've found the hottest Corgi on TinDog. <br> Woof.</h2>
             <img src="images/dog-img.jpg" alt="dog-profile" class="testimonial-img">
             <em>Pebbles, New York</em>
           </div>
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item container-fluid">
           <div alt="Second Testimony">
             <h2 class="testimonial-text">My dog used to be so lonely, but with TinDog's help, they've found the love of their life. I think.</h2>
             <img class="testimonial-img" src="images/lady-img.jpg" alt="lady-profile">
@@ -121,7 +123,7 @@
 
   <!-- Press -->
 
-  <section id="press">
+  <section class="colored-section" id="press">
     <img class="press-logo" src="images/TechCrunch.png" alt="tc-logo">
     <img class="press-logo" src="images/tnw.png" alt="tnw-logo">
     <img class="press-logo" src="images/bizinsider.png" alt="biz-insider-logo">
@@ -132,7 +134,7 @@
 
   <!-- Pricing -->
 
-  <section id="pricing">
+  <section class="white-section" id="pricing">
     <h2>A Plan for Every Dog's Needs</h2>
     <p>Simple and affordable price plans for your and your dog.</p>
 
@@ -188,23 +190,26 @@
 
   <!-- Call to Action -->
 
-  <section id="cta">
-
-    <h3>Find the True Love of Your Dog's Life Today.</h3>
-    <button type="button">Download</button>
-    <button type="button">Download</button>
-
+  <section class="colored-section" id="cta">
+    <div class="container-fluid">
+      <h3 id="cta-cite" >Find the True Love of Your Dog's Life Today.</h3>
+      <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button>
+      <button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i>Download</button>
+    </div>
   </section>
 
 
   <!-- Footer -->
 
-  <footer id="footer">
-
-    <p>© Copyright 2018 TinDog</p>
-
+  <footer class="white-section" id="footer">
+    <div class="container-fluid">
+      <i class="footer-icons fab fa-facebook-square"></i>
+      <i class="fab fa-twitter footer-icons"></i>
+      <i class="fab fa-instagram-square footer-icons"></i>
+      <i class="fas fa-envelope footer-icons"></i>
+      <p>© Copyright 2018 TinDog</p>
+    </div>
   </footer>
-
 
 </body>
 
