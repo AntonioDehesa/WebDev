@@ -1,16 +1,30 @@
+require('dotenv').config();
+
 const express = require("express");
 const https = require("https");
-
+const { response } = require("express");
 
 const app = express();
-
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 app.get("/", function(req,res)
 {
-    const url = "https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=c69ef9ab35e75cbb525faf65f0255336&units=metric";
+    res.sendFile(__dirname + "/index.html");
+});
+
+
+app.post("/", function(req,res)
+{
+    console.log("Post received");
+    var query = req.body.City;
+    var unit = "metric";
+    const apiKey = process.env.OpenWeatherAPI;
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apiKey + "&units=" + unit;
     var weather = https.get(url);
-    //res.send("Server is up and running");
-    //console.log(weather);
+    
     https.get(url,function(response)
     {
         console.log(response.statusCode);
@@ -20,7 +34,7 @@ app.get("/", function(req,res)
             console.log(weatherData);
             var temp = weatherData.main.temp;
             console.log(temp);
-            res.write("<h1>" + temp + "</h1>");
+            res.write("<h1>The temperature in " + query + " is " + temp + "</h1>");
             var description = weatherData.weather[0].description;
             var icon = weatherData.weather[0].icon;
             var iconImg = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
