@@ -10,11 +10,41 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
-app.use(express.static("public"));
+
+app.set("view engine", "ejs");
 
 app.get("/", function(req,res)
 {
-    res.sendFile(__dirname + "/signup.html");
+    var today = new Date();
+    var day = "";
+    switch (today.getDay())
+    {
+        case 0:
+            day = "Monday";
+            break;
+        case 1:
+            day = "Tuesday";
+            break;
+        case 2:
+            day = "Wednesday";
+            break;
+        case 3:
+            day = "Thursday";
+            break;
+        case 4:
+            day = "Friday";
+            break;
+        case 5:
+            day = "Saturday";
+            break;
+        case 6:
+            day = "Sunday";
+            break;
+        default:
+            break;
+    }
+    res.render("list", {DAY: day});
+    //res.sendFile(__dirname + "/index.html");
 });
 
 
@@ -67,35 +97,7 @@ app.post("/", function(req,res)
 });
 
 
-
-app.post("/failure", function(req,res)
-{
-    res.redirect("/");
-});
-
-
-/*app.listen(3000, function()//for heroku change port to process.env.PORT
-{
-    console.log("Server is listening on port 3000");
-});
-*/
-
-app.listen(process.env.PORT, function()
+app.listen(3000, function()
 {
     console.log("Server is running on port 3000");
 });
-//Unique ID for audience: 9e4eb01c13
-//check later: https://mailchimp.com/developer/marketing/guides/quick-start/#make-your-first-api-call
-
-/*
-{
-  "email_address": "$user_email",
-  "status": "subscribed",
-  "merge_fields": {
-	"FNAME": "$user_fname",
-	"LNAME": "$user_lname"
-  }
-}
-*/
-
-//I will not upload this to Heroku, as I am using the API keys in my local environment
