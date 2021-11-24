@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 
@@ -37,6 +38,13 @@ app.post("/", function(req,res)
     res.redirect("/");
 });
 
+/*app.put("/", function(req,res)
+{
+    let item = req.body.newItems;
+    items.push(item);
+    res.redirect("/");
+    res.render("list",{newItems: items});
+});*/
 
 app.listen(3000, function()
 {
