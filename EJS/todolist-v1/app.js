@@ -4,7 +4,7 @@ const https = require("https");
 const { response } = require("express");
 let day = {};
 let items = ["Buy Food","Cook Food"];
-
+let workItems = [];
 
 const app = express();
 app.use(express.json());
@@ -26,7 +26,7 @@ app.get("/", function(req,res)
     };
 
     let day = today.toLocaleDateString("en-US", options);
-    res.render("list", {DAY: day, newItems: items});
+    res.render("list", {listTitle: day, newItems: items});
     //res.sendFile(__dirname + "/index.html");
 });
 
@@ -34,8 +34,17 @@ app.get("/", function(req,res)
 app.post("/", function(req,res)
 {
     let item = req.body.newItems;
-    items.push(item);
-    res.redirect("/");
+    console.log(req.body.list);
+    if(req.body.list === "work")
+    {
+        workItems.push(item);
+        res.redirect("/work");
+    }
+    else
+    {
+        items.push(item);
+        res.redirect("/");   
+    }
 });
 
 /*app.put("/", function(req,res)
@@ -45,6 +54,23 @@ app.post("/", function(req,res)
     res.redirect("/");
     res.render("list",{newItems: items});
 });*/
+
+app.get("/work", function(req,res)
+{
+    res.render("list", {listTitle:"work", newItems: workItems});
+});
+
+app.post("/work", function(req,res)
+{
+    let item = req.body.newItems;
+    workItems.push(item);
+    res.redirect("/");
+});
+
+app.get("/about", function(req,res)
+{
+    res.render("about");
+});
 
 app.listen(3000, function()
 {
