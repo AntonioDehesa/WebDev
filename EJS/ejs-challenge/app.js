@@ -2,7 +2,7 @@ require('dotenv').config(); //Required to store API keys in env and not in code
 const express = require("express");
 const https = require("https");
 const { response } = require("express");
-
+const _ = require("lodash");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({
@@ -18,11 +18,11 @@ app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
 
-
+let posts = [];
 
 app.get("/", function(req,res)
 {
-  res.render("home.ejs", {homeStartingContent: homeStartingContent});
+  res.render("home.ejs", {homeStartingContent: homeStartingContent, posts:posts});
 });
 
 
@@ -37,8 +37,32 @@ app.get("/contact", function (req,res)
   res.render("contact.ejs", {contactContent: contactContent});
 });
 
+app.get("/compose", function (req,res)
+{
+  res.render("compose");
+});
 
 
+app.post("/compose", function (req,res)
+{
+  posts.unshift({title: req.body.Title,
+    content: req.body.Post});
+  res.redirect("/");
+})
+
+
+app.get("/posts/:Title", function (req,res) 
+{
+  const title = req.params.Title;
+  posts.forEach(postElement => 
+    {
+      if(_.lowerCase(postElement.title) === _.lowerCase(title))
+      {
+        console.log("Trying");
+        res.render("post", {Title:postElement.title, Post: postElement.content});
+      }
+    });
+});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
