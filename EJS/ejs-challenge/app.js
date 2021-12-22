@@ -19,22 +19,24 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 let posts = [];
+const charactersToShorten = 100;
+const address = "localhost:3000";
 
 app.get("/", function(req,res)
 {
-  res.render("home.ejs", {homeStartingContent: homeStartingContent, posts:posts});
+  res.render("home", {homeStartingContent: homeStartingContent, posts:posts, maxChar: charactersToShorten});
 });
 
 
 app.get("/about", function (req,res)
 {
-  res.render("about.ejs", {aboutContent: aboutContent});
+  res.render("about", {aboutContent: aboutContent});
 });
 
 
 app.get("/contact", function (req,res)
 {
-  res.render("contact.ejs", {contactContent: contactContent});
+  res.render("contact", {contactContent: contactContent});
 });
 
 app.get("/compose", function (req,res)
@@ -58,8 +60,7 @@ app.get("/posts/:Title", function (req,res)
     {
       if(_.lowerCase(postElement.title) === _.lowerCase(title))
       {
-        console.log("Trying");
-        res.render("post", {Title:postElement.title, Post: postElement.content});
+        res.render("post", {Title:title, Post: postElement.content});
       }
     });
 });
