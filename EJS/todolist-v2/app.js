@@ -1,5 +1,5 @@
 //required packages
-
+require('dotenv').config();
 const express = require("express");
 const https = require("https");
 const { response } = require("express");
@@ -12,7 +12,13 @@ let day = {};
 let items = ["Buy Food","Cook Food"];
 let workItems = [];
 
-mongoose.connect("mongodb://localhost:27017/todoListDB",{useNewUrlParser: true});
+let password = process.env.MongoDBPassword;
+let user = "admin-antonio";
+let connectionString = "mongodb+srv://" + user + ":" + password +"@testingmongodb.oks8q.mongodb.net/todolistDB";
+
+//mongoose.connect("mongodb://localhost:27017/todoListDB",{useNewUrlParser: true});
+
+mongoose.connect(connectionString, {useNewUrlParser: true});
 
 const itemsSchema = new mongoose.Schema({
     name: {
@@ -122,7 +128,7 @@ app.get("/:customListName", function(req,res)
             }
             else
             {
-                res.render("list", {listTitle:customListName, newItems: []});
+                res.render("list", {listTitle:customListName, newItems: defaultItems});
                 const list = new List({
                     name: customListName,
                     items: defaultItems
