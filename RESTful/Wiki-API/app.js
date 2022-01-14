@@ -31,6 +31,53 @@ const articleSchema = new mongoose.Schema({
 
 const Article = new mongoose.model("article", articleSchema);
 
+app.get("/articles", function (req,res) {
+  Article.find({}, function (err,results) {
+    if(err)
+    {
+      console.log("Error found while accessing the articles");
+      console.log(err);
+      res.send(err);
+    }
+    else
+    {
+      res.send(results);
+    }
+  })
+});
+
+app.post("/articles", function (req,res) {
+  console.log(req.body.title);
+  console.log(req.body.content);
+  const newArticle = new Article({
+    title: req.body.title,
+    content: req.body.content
+  });
+  newArticle.save(function (err) {
+    if(err)
+    {
+      res.send(err);
+    }
+    else
+    {
+      res.send("Successfully added a new article");
+    }
+  });
+});
+
+app.delete("/articles", function (req,res) {
+  Article.deleteMany({}, function (err) {
+    if(err)
+    {
+      res.send(err);
+    }
+    else
+    {
+      res.send("Successfully deleted all articles");
+    }
+  });
+});
+
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
