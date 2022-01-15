@@ -31,7 +31,71 @@ const articleSchema = new mongoose.Schema({
 
 const Article = new mongoose.model("article", articleSchema);
 
-app.get("/articles", function (req,res) {
+
+app.route("/articles/:specificArticle")
+.get(function (req,res) {
+  Article.findOne({title: req.params.specificArticle}, function (err,result) {
+    if(err)
+    {
+      console.log("Error found while accessing the articles");
+      console.log(err);
+      res.send(err);
+    }
+    else
+    {
+      res.send(result);
+    }
+  })
+})
+.put(function(req,res)
+{
+  Article.updateOne({title: req.params.specificArticle},
+  {title: req.body.title, content: req.body.content},
+  function (err) {
+    if(err)
+    {
+      res.send(err);
+    }
+    else
+    {
+      res.send("Successfully updated article " + req.params.specificArticle);
+    }
+  }
+  );
+})
+.patch(function(req,res)
+{
+  Article.updateOne({title: req.params.specificArticle},
+    {$set: req.body},
+    function (err) {
+      if(err)
+      {
+        res.send(err);
+      }
+      else
+      {
+        res.send("Successfully patched article " + req.params.specificArticle);
+      }
+    }
+    );
+})
+.delete(function (req,res) {
+  Article.deleteOne({title: req.params.specificArticle}, function (err) {
+    if(err)
+    {
+      res.send(err);
+    }
+    else
+    {
+      res.send("Successfully deleted article " + req.params.specificArticle);
+    }
+  });
+});
+
+
+
+app.route("/articles")
+.get(function (req,res) {
   Article.find({}, function (err,results) {
     if(err)
     {
@@ -44,9 +108,8 @@ app.get("/articles", function (req,res) {
       res.send(results);
     }
   })
-});
-
-app.post("/articles", function (req,res) {
+})
+.post(function (req,res) {
   console.log(req.body.title);
   console.log(req.body.content);
   const newArticle = new Article({
@@ -63,9 +126,8 @@ app.post("/articles", function (req,res) {
       res.send("Successfully added a new article");
     }
   });
-});
-
-app.delete("/articles", function (req,res) {
+})
+.delete(function (req,res) {
   Article.deleteMany({}, function (err) {
     if(err)
     {
