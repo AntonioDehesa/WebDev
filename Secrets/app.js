@@ -3,7 +3,10 @@ const express = require("express");
 //const { response } = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const encrypt = require("mongoose-encryption");
+//const encrypt = require("mongoose-encryption");
+//const sha256 = require("js-sha256");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
@@ -27,7 +30,7 @@ const userSchema = new mongoose.Schema({
 /*Encryption*/
 const secret = process.env.secretString;
 
-userSchema.plugin(encrypt, {secret: secret, encryptedFields: ["password"]});
+//userSchema.plugin(encrypt, {secret: secret, encryptedFields: ["password"]});
 
 const User = new mongoose.model("User", userSchema);
 ///methods
@@ -44,21 +47,26 @@ app.get("/register", function (req,res) {
 });
 
 app.post("/register", function (req,res) {
-    const newUser = new User({
-        email: req.body.username,
-        password: req.body.password
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+            const newUser = new User({
+                email: req.body.username,
+                password: hash
+            });
+            newUser.save(function (err) {
+                if(err)
+                {
+                    console.log("There was an error when creating a new user");
+                    console.log(err);
+                }
+                else
+                {
+                    res.render("secrets");
+                }
+            });
+        });
     });
-    newUser.save(function (err) {
-        if(err)
-        {
-            console.log("There was an error when creating a new user");
-            console.log(err);
-        }
-        else
-        {
-            res.render("secrets");
-        }
-    });
+    
 });
 
 app.post("/login", function (req,res) {
@@ -73,9 +81,14 @@ app.post("/login", function (req,res) {
         }
         else
         {
-            if(foundUser.password === password)
+            if(foundUser)
             {
-                res.render("secrets");
+                bcrypt.compare(password, foundUser.password, function (err,result) {
+                    if(result)
+                    {
+                        res.render("secrets");
+                    }
+                });
             }
         }
     })
