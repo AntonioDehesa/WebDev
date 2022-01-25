@@ -6,9 +6,7 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-const findOrCreate = require("mongoose-findorcreate");
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
-const findOrCreatePlugin = require('mongoose-findorcreate');
+var LocalStrategy = require('passport-local').Strategy;
 const app = express();
 
 app.use(express.static("public"));
@@ -18,8 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //passport needs bodyParser, even if express does not need it anymore. 
 /*Encryption*/
 const secret = process.env.secretString;
-const clientID = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
+
 app.use(session({
   secret: secret,
   resave: false,
@@ -35,14 +32,12 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String, 
         required: true},
-    password: String,
-    googleId: String
+    password: String
     /*password: {type: String,
     required: true}//we do not need to specify the password here, as passport does it for us
     password: String*/
 });
 userSchema.plugin(passportLocalMongoose);
-userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
@@ -56,34 +51,9 @@ passport.serializeUser(function(user, done) {
       done(err, user);
     });
   });
-
-  passport.use(new GoogleStrategy({
-    clientID: clientID,
-    clientSecret: clientSecret,
-    callbackURL: "http://localhost:3000/auth/google/secrets",
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
-    User.findOrCreate({ googleId: profile.id, username: profile.name.givenName + " " + profile.name.familyName }, function (err, user) {
-      return cb(err, user); 
-    });
-  }
-));
-
 ///methods
 app.get("/", function (req,res) {
     res.render("home");
-});
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ["profile"] }));
-
-app.get('/auth/google/secrets', 
-passport.authenticate('google', { failureRedirect: '/login' }),
-function(req, res) {
-  // Successful authentication, redirect home.
-  res.redirect('/secrets');
 });
 
 app.get('/logout', function(req, res){
